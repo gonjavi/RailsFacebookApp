@@ -5,10 +5,7 @@ linters:
     config: './rubocop.yml'
     csslint: {  }
 files:
-  ignore:
-    - 'bower_components/*'
-    - 'node_modules/*'
-     - "bin/*"
+    - "bin/*"
     - "db/*"
     - "config/*"
     - "Guardfile"
