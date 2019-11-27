@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except:[:show, :index]
   
   def index
-    @posts = Post.all
-    @p = Post.new
+    @posts = Post.all.order('created_at DESC').all
+    @post = Post.new
   end
 
   def show
@@ -19,12 +19,13 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user = current_user
+    @post.user_id = current_user.id
+    
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
+        format.json { render :index, status: :created, location: @post }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }

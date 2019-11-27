@@ -11,20 +11,25 @@
         <div class="pad-block pad-left col l8">
         <%= current_user.email.split('@')[0] %>
         </div>
+        <%= form_for @post, url: post_path(@post, remote: true), method: :post, do |f| %>
             <div class="card-content">
               <div class="row">
+       
                   <div class="input-field col s12">
                   <i class="material-icons prefix">textsms</i>
                   <input type="text" id="autocomplete-input" class="autocomplete">
                   <label for="autocomplete-input">What are your thoughts ...</label>
+                  <%= f.text_field :content %>
                   </div>
               </div>
           </div>
           
         
           <div class="card-action">
-            <a href="#">Post</a>
+            <a  <%= f.submit %>Post</a>
           </div>
+
+        <% end %>
        
       </div>
     </div>

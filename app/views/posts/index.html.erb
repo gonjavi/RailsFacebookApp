@@ -11,21 +11,26 @@
         <div class="pad-block pad-left col l8">
         <%= current_user.email.split('@')[0] %>
         </div>
+       
             <div class="card-content">
               <div class="row">
+                <%= form_with(model: @post, local: true) do |f| %>
                   <div class="input-field col s12">
                   <i class="material-icons prefix">textsms</i>
-                  <input type="text" id="autocomplete-input" class="autocomplete">
-                  <label for="autocomplete-input">What are your thoughts ...</label>
+                  <%= f.label :content %>
+                  <%= f.text_field :content  %>
+                  <%# <label for="autocomplete-input">What are your thoughts ...</label> %>
+                  
                   </div>
               </div>
           </div>
           
         
           <div class="card-action">
-            <a href="#">Post</a>
+            <a ><%= f.submit %></a>
           </div>
-       
+
+       <% end %>
       </div>
     </div>
   </div>
@@ -58,9 +63,9 @@
     </div>
 </div>
 <% else %>
-<h2>BookFace</h2>
-<h6>Please become our user</h6>
-<h6>You would not regret it ;)</h6>
+    <h2>BookFace</h2>
+    <h6>Please become our user</h6>
+    <h6>You would not regret it ;)</h6>
 
     <%= link_to 'Sign up', new_user_registration_path %>
     <%= link_to 'Sign in', new_user_session_path %>
