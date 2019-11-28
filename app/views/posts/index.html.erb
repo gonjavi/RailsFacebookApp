@@ -9,7 +9,7 @@
     <h2>InstaFeed</h2>
       <div class="card">
         <div class="pad-block pad-left col l8">
-        <%= current_user.email.split('@')[0] %>
+        <%= current_user.name %>
         </div>
        
             <div class="card-content">
@@ -39,16 +39,19 @@
     <div class=" col l2"></div>
     <div class="col l8"> 
     <% @posts.each do |post| %>
-
-
         <div class="card">
 
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">
+         <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
          
             <div><%= post.user.name %></div>
-          <div class="pad-block"> <%= post.content %></div>
-
+            <div class="pad-block"> <%= post.content %></div>
+             <div class="row">
+                      <div class="col lg1">Like</div>
+                      <div class="col lg1">Comment</div>
+                      <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
+                      <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
+                    </div>
          
           </div>
       </div>
@@ -63,10 +66,16 @@
     </div>
 </div>
 <% else %>
-    <h2>BookFace</h2>
-    <h6>Please become our user</h6>
-    <h6>You would not regret it ;)</h6>
+  <div class="row">
+    <div class="col l3"></div>
+      
+      <div class="col s12 m7 l6 center-align">
+      <h2 >BookFace</h2>
+      <h3>Please become a user</h3>
+      <h3>You would not regret it ;)</h3>
 
-    <%= link_to 'Sign up', new_user_registration_path %>
-    <%= link_to 'Sign in', new_user_session_path %>
+      <%= link_to 'Sign up', new_user_registration_path %>
+      <%= link_to 'Sign in', new_user_session_path %>
+    </div>
+  </div>
 <% end %>
