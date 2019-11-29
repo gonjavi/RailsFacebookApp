@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   validates :name, presence: { string: true }, length: { minimum: 2 }
   # Include default devise modules. Others available are:
