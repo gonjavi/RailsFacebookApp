@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 cat_post:
-  content: MyString
+  content: "MyString"
   user: one
 
 dog_post:

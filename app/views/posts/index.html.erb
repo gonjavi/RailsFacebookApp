@@ -1,7 +1,5 @@
 
 <% if current_user  %>
-  
-
   <div class="row">
     <div class="col l2"></div>
     
@@ -44,13 +42,15 @@
          <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
          
-            <div><%= post.user.name %></div>
+            <div class="name"><%= post.user.name %></div>
             <div class="pad-block"> <%= post.content %></div>
-             <div class="row">
+             <div class="row  pad-block">
                       <div class="col lg1">Like</div>
                       <div class="col lg1">Comment</div>
+                      <% if current_user == post.user %>
                       <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
                       <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
+                      <% end %>
                     </div>
          
           </div>
