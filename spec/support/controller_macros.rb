@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ControllerMacros
   def sign_me_in
     before :each do
