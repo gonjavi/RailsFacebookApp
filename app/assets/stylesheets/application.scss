@@ -3,3 +3,19 @@ $primary-color: color("blue", "lighten-2") !default;
 $secondary-color: color("yellow", "base") !default;
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+body {
+    background-color: beige;
+}    
+.pad-left {
+    padding-left: 1em;
+}
+.pad-rigth {
+    padding-right: 1em;
+}
+.pad-block {
+    padding-block-start: 2em;
+}
+.name{
+    border-bottom: 1px solid gray;
+  }
