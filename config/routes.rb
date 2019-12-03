@@ -4,5 +4,4 @@ Rails.application.routes.draw do
   devise_for :users
   resources :comments
   resources :likes
-  post 'posts/comment'
 end

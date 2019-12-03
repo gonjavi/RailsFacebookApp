@@ -5,4 +5,5 @@ class Comment < ApplicationRecord
   validates :content, presence: {string: true}
   validates :user_id, presence: true
   validates :post_id, presence: true
+  accepts_nested_attributes_for :likes
 end
