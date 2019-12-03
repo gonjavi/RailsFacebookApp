@@ -7,7 +7,10 @@
     <h2>InstaFeed</h2>
       <div class="card">
         <div class="pad-block pad-left col l8">
-        <%= current_user.name %>
+        <div class="pad-block pad-left ">
+          <%= current_user.name %>
+        </div>
+
         </div>
        
           <div class="card-content">
@@ -17,13 +20,16 @@
                 <i class="material-icons prefix">textsms</i>
                 <%= f.label :content %>
                 <%= f.text_field :content  %>
-                <%# <label for="autocomplete-input">What are your thoughts ...</label> %>
-                    
+
                 </div>
                  </div>
                 </div>
-                <div class="card-action">
-                  <a ><%= f.submit %></a>
+                <div class="card-action teal lighten-5">
+                  
+                  <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
+                    Add <i class="material-icons right ">add</i>
+                   <% end %>
+
                 </div>
               <% end %>
 
@@ -42,14 +48,26 @@
             <span class="card-title activator grey-text text-darken-4">
          
             <div class="name"><%= post.user.name %></div>
-            <div class="pad-block"> <%= post.content %></div>
+            <div class="pad-block pad-left"> <%= post.content %></div>
               <div class="row  pad-block">
               <%= form_with(model: @like, local: true) do |f| %>
               <%= f.hidden_field :post_id, value: post.id %>
-                <div class="col lg1"> <%= f.submit %></div>
+                <div class="col lg1"> 
+                
+
+              <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
+                  Like <i class="material-icons right ">thumb_up</i>
+                 <% end %>
+                
+                </div>
               <% end %>  
                 <!--usar Javascript expandir y recoger comment que esta mas abajo -->
-                <div class="col lg1">Comment </div>
+
+                <div class="col lg1" id="<%= post.id %>"> 
+                  Comments
+                
+                </div>
+
                 <% if current_user == post.user %>
                   <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
                   <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
@@ -59,6 +77,8 @@
           </div>
         </div>
         <!--show comments -->
+        <div class="col l12" id=Com<%= post.id %>> 
+        
           <% post.comments.each do |comment| %>
             <div class="card-content">
                   <div class="row">
@@ -75,6 +95,11 @@
               </div>
             </div>
           <% end %>
+
+
+
+          </div>
+
         <!-- write comment -->
         <div class="card-content">
           <div class="row">
@@ -112,3 +137,22 @@
     </div>
   </div>
 <% end %>
+<script>
+function isHidden(el) {
+    return ($(el).is(":visible"))
+}
+<% @posts.each do |post| %>
+      $("#<%= post.id %>").click(function() {
+        alert($("#Com<%= post.id %>").is(":visible"));
+        if(isHidden("#Com<%= post.id %>")) {
+          
+          $( "#Com<%= post.id %>" ).hide( "slow" );
+
+        } else {
+
+          $( "#Com<%= post.id %>" ).show( "slow" );
+        }
+      });
+<% end %>
+
+</script>
