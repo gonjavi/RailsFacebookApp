@@ -6,7 +6,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order('created_at DESC').all
+    @comments = Comment.all.order('created_at ASC').all
     @post = Post.new
+    @comment = Comment.new
   end
 
   def show; end
@@ -53,6 +55,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def comment
+    @comment = Comment.new
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -62,6 +68,12 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:content, :user_id)
+    params.require(:post).permit(:content,
+      :comments_attributes => [:id, :content, :user_id])
+  end
+
+  def comment_params
+    params.require(:post).permit(
+      :comments_attributes => [:content, :user_id])
   end
 end

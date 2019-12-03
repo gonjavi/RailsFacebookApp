@@ -10,25 +10,23 @@
         <%= current_user.name %>
         </div>
        
-            <div class="card-content">
-              <div class="row">
-                <%= form_with(model: @post, local: true) do |f| %>
-                  <div class="input-field col s12">
-                  <i class="material-icons prefix">textsms</i>
-                  <%= f.label :content %>
-                  <%= f.text_field :content  %>
-                  <%# <label for="autocomplete-input">What are your thoughts ...</label> %>
-                  
-                  </div>
-              </div>
-          </div>
-          
-        
-          <div class="card-action">
-            <a ><%= f.submit %></a>
-          </div>
+          <div class="card-content">
+            <div class="row">
+              <%= form_with(model: @post, local: true) do |f| %>
+                <div class="input-field col s12">
+                <i class="material-icons prefix">textsms</i>
+                <%= f.label :content %>
+                <%= f.text_field :content  %>
+                <%# <label for="autocomplete-input">What are your thoughts ...</label> %>
+                    
+                </div>
+                 </div>
+                </div>
+                <div class="card-action">
+                  <a ><%= f.submit %></a>
+                </div>
+              <% end %>
 
-       <% end %>
       </div>
     </div>
   </div>
@@ -36,32 +34,63 @@
     <div class="row">
     <div class=" col l2"></div>
     <div class="col l8"> 
+    <!-- show post -->
     <% @posts.each do |post| %>
-        <div class="card">
+      <div class="card">
 
          <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
          
             <div class="name"><%= post.user.name %></div>
             <div class="pad-block"> <%= post.content %></div>
-             <div class="row  pad-block">
-                      <div class="col lg1">Like</div>
-                      <div class="col lg1">Comment</div>
-                      <% if current_user == post.user %>
-                      <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
-                      <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
-                      <% end %>
-                    </div>
+              <div class="row  pad-block">
+                <div class="col lg1">Like</div>
+                <div class="col lg1">Comment usar Javascript expandir comment abajo</div>
+                <% if current_user == post.user %>
+                  <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
+                  <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
+                <% end %>
+              </div>
          
           </div>
-      </div>
-
-
-
-
-
-
+        </div>
+        <!--show comments -->
+          <% post.comments.each do |comment| %>
+            <div class="card-content">
+                  <div class="row">
+                    <div class="col l2"></div>  
+                    <div class="commenter l8"><%= comment.user.name %></div>
+                      <div class="row">
+                        <% if current_user == comment.user %>
+                        <div class="col l2"></div>
+                          <div class="col l5"> <%= comment.content %></div>
+                          <div class="col l1"><%= link_to 'Edit', edit_comment_path(comment) %></div>
+                          <div class="col l1"><%= link_to "Delete", comment_path(comment.id), :method => :delete %></div>
+                        <% end %>
+                      </div>
+              </div>
+            </div>
+          <% end %>
+        <!-- write comment -->
+        <div class="card-content">
+          <div class="row">
+              <%= form_with(model: @comment, local: true) do |f| %>
+                <div class="input-field col s12">
+                <i class="">Comment</i>
+                <%= f.label :content %>
+                <%= f.text_field :content  %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                </div>
+                <div class="card-action">
+                  <a ><%= f.submit %></a>
+                </div>
+              <% end %>
+          </div>
+        </div>
+        
     <% end %>
+    <!-- end show post  -->
+
     </div>
     </div>
 </div>
