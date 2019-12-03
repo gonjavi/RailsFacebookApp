@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @comments = Comment.all.order('created_at ASC').all
     @post = Post.new
     @comment = Comment.new
+    @like = Like.new
   end
 
   def show; end

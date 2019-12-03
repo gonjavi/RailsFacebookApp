@@ -44,8 +44,12 @@
             <div class="name"><%= post.user.name %></div>
             <div class="pad-block"> <%= post.content %></div>
               <div class="row  pad-block">
-                <div class="col lg1">Like</div>
-                <div class="col lg1">Comment usar Javascript expandir comment abajo</div>
+              <%= form_with(model: @like, local: true) do |f| %>
+              <%= f.hidden_field :post_id, value: post.id %>
+                <div class="col lg1"> <%= f.submit %></div>
+              <% end %>  
+                <!--usar Javascript expandir y recoger comment que esta mas abajo -->
+                <div class="col lg1">Comment </div>
                 <% if current_user == post.user %>
                   <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
                   <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
