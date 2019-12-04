@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @comment = Comment.new
     @like = Like.new
+    @likes = Like.all
   end
 
   def show; end
@@ -70,11 +71,12 @@ class PostsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
     params.require(:post).permit(:content,
-      :comments_attributes => [:id, :content, :user_id])
+                                 :comments_attributes => [:id, :content, :user_id])
   end
 
   def comment_params
     params.require(:post).permit(
-      :comments_attributes => [:content, :user_id])
+      :comments_attributes => [:content, :user_id]
+    )
   end
 end

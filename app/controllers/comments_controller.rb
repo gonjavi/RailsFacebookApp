@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   end
 
   def show; end
-  
+
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to posts_path, notice: 'Comment was successfully updated.' }
-     else
+      else
         format.html { render :edit }
       end
     end

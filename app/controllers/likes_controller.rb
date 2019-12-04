@@ -3,7 +3,7 @@
 class LikesController < ApplicationController
   before_action :set_like, only: %i[show destroy]
   before_action :authenticate_user!, except: %i[show]
-    
+
   def new
     @like = Like.new
   end
@@ -15,12 +15,20 @@ class LikesController < ApplicationController
       redirect_to posts_path
     else
       flash.now[:danger] = 'Like was not created'
-      redirect_to posts_path
+      redirect_to
+    end
+  end
+
+  def destroy
+    @like.destroy
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'like was successfully deleted.' }
+      format.json { head :no_content }
     end
   end
 
   private
-  
+
   def set_like
     @like = Like.find(params[:id])
   end
