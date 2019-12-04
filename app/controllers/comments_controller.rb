@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
       redirect_to posts_path
     else
       flash.now[:danger] = 'Comment was not created'
-      redirect_to posts_path
+      redirect_to 
     end
   end
 
