@@ -34,7 +34,7 @@ RSpec.describe CommentsController, type: :controller do
 
     it 'updates a Comment' do
       expect do
-        put 'update', params: { id: @comment.id, comment: { content: 'update  content', user_id: @current_user.id, post_id: @comment.post.id } }
+        put 'update', params: { id: @comment.id, comment: { content: 'update', user_id: @current_user.id, post_id: @comment.post.id } }
       end.to change(Post, :count).by(0)
       expect(response).to redirect_to(posts_path)
       expect(flash[:notice]).to match(/Comment was successfully updated.*/)
