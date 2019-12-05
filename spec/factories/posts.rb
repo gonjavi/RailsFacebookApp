@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :post do
     content { 'my Event' }
-    user {}
+    association :user, name: 'james', email: 'javirer@gmail.com'
   end
 end

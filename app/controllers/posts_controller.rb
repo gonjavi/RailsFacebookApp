@@ -27,9 +27,8 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
-        format.json { render :index, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { render 'new' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -41,7 +40,7 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :index, status: :ok, location: @post }
       else
-        format.html { render :edit }
+        format.html { render 'edit' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -52,7 +51,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_url, notice: 'Post was successfully deleted.' }
       format.json { head :no_content }
     end
   end

@@ -13,11 +13,13 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
-      redirect_to posts_path
-    else
-      flash.now[:danger] = 'Comment was not created'
-      redirect_to
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to posts_path, notice: 'Comment was successfully created.' }
+      else
+        format.html { render 'new' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -36,7 +38,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_url, notice: 'Comment was successfully deleted.' }
       format.json { head :no_content }
     end
   end

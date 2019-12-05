@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :comment do
     content { 'content' }
-    user { nil }
-    post { nil }
+    association :post, content: 'my content'
+    association :user, name: 'mera', email: 'merae5@gmail.com'
   end
 end

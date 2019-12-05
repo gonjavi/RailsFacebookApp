@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :like do
-    user { nil }
-    post { nil }
-    comment { nil }
+    association :user, name: 'james', email: 'javireir@gmail.com'
+    association :post
   end
 end
