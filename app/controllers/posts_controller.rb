@@ -6,7 +6,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order('created_at DESC').all
+    @comments = Comment.all.order('created_at ASC').all
     @post = Post.new
+    @comment = Comment.new
+    @like = Like.new
+    @likes = Like.all
   end
 
   def show; end
@@ -23,9 +27,8 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
-        format.json { render :index, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { render 'new' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -37,7 +40,7 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :index, status: :ok, location: @post }
       else
-        format.html { render :edit }
+        format.html { render 'edit' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -48,9 +51,13 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_url, notice: 'Post was successfully deleted.' }
       format.json { head :no_content }
     end
+  end
+
+  def comment
+    @comment = Comment.new
   end
 
   private
@@ -62,6 +69,13 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:content, :user_id)
+    params.require(:post).permit(:content,
+                                 :comments_attributes, %i[id content user_id])
+  end
+
+  def comment_params
+    params.require(:post).permit(
+      :comments_attributes, %i[content user_id]
+    )
   end
 end
