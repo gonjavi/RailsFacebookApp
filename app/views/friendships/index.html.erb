@@ -1,0 +1,102 @@
+
+<div class="container">
+  <div class="">
+      <h1 class="center-alingn">Friendship</h1>
+  </div>
+  
+
+  <div class="row">
+    <table class="highlight">
+      <div class="col 12 flow-text">
+        <h3>Friends</h3>
+      </div>
+          <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% current_user.friends.each do |f|%>
+            <tr>
+              <td><%= f.name.upcase %></td>
+              <td class="btn-flat disabled"> friend </td>
+            </tr>
+          <% end %>
+          </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+  <table class="highlight">
+    <div class="col 12 flow-text">
+      <h3>Pending Requests</h3>
+    </div>
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+         <% current_user.pending_friends.each do |f|%>
+          <tr>
+            <td><%= f.name.upcase %></td>
+            <td class="btn-flat disabled">Pending</td>
+          </tr>
+        <% end %>
+        </tbody>
+  </table>
+  </div>
+
+  <div class="row">  
+  <table class="highlight">
+    <div class="col 12 flow-text">
+      <h3>Requests</h3>
+    </div>
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% current_user.friend_requests.each do |fr|%>
+          <tr>
+           
+              <td><%= fr.name.upcase %></td>              
+                          
+          </tr>
+        <% end %>
+  </table>
+  </div>
+
+  <div class="row">
+  <table class="highlight">
+    <div class="col-12 flow-text">
+      <h3>Suggested Users</h3>
+    </div>
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @suggested.each do |s|%>
+          <tr>
+            <% if s.id != current_user.id %>
+            <td><%= s.name.upcase %></td>
+            <td><%= link_to 'Add friend', invite_path(:friend_id => s.id), method: :post, :class => "blue lighten-1 btn" %></td> 
+            <% end %>
+          </tr>
+        <% end %>
+        </body>
+  </table>
+  </div>
+
+</div>

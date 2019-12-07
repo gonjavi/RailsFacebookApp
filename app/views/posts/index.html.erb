@@ -16,18 +16,7 @@
           <div class="card-content">
             <div class="row">
               <%= form_with(model: @post, local: true) do |f| %>
-              <% if @post.errors.any? %>
-                <div id="error_explanation">
-                  <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-                  <ul>
-                  <% @post.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                  </ul>
-                </div>
-              <% end %>
-              
+                            
                 <div class="input-field col s12">
                 <i class="material-icons prefix">textsms</i>
                 <%= f.label :content %>
