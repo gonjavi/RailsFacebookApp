@@ -5,7 +5,7 @@ class FriendshipsController < ApplicationController
   before_action :authenticate_user!, except: %i[show]
 
   def index
-    @friendships = User.all
+    @friendships = Friendship.all
     @friendship = Friendship.new
     @sug_users = User.all
     @suggested = User.all
@@ -30,9 +30,17 @@ class FriendshipsController < ApplicationController
     end
   end
 
- 
+  def confirm
+    #@user = current_user.friendships.build(friendship_params)
+    #@user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
+    current_user.confirm_friend(@user)
+    flash[:success] = 'Friend Request Confirmed'
+    redirect_to friendships_path
+  end
 
   def destroy
+    @friendship.destroy
   end 
 
   private
@@ -42,7 +50,7 @@ class FriendshipsController < ApplicationController
   end
 
   def friendship_params
-    params.permit(:friend_id, :confirmed, :user_id)
+    params.permit(:friend_id, :confirmed, :user_id, :id)
   end
 
 end

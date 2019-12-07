@@ -67,8 +67,12 @@
         <% current_user.friend_requests.each do |fr|%>
           <tr>
            
-              <td><%= fr.name.upcase %></td>              
-                          
+            <td><%= fr.name.upcase %></td> 
+            <% @friendships.each do |friendship| %> 
+              <% if friendship.user_id == fr.id and friendship.friend_id == current_user.id %>            
+              <td><%= link_to 'Accept', confirm_path( :user_id => fr.id, :id => friendship.id ), method: :post, :class => "blue lighten-1 btn" %></td>             
+              <% end %>
+            <% end %>
           </tr>
         <% end %>
   </table>
