@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="">
-      <h1 class="center-alingn">Friendship</h1>
+      <h1 class="center-alingn">Friendships</h1>
   </div>
   
 
@@ -18,12 +18,17 @@
           </thead>
 
           <tbody>
-          <% current_user.friends.each do |f|%>
+          
             <tr>
-              <td><%= f.name.upcase %></td>
+            <% current_user.friends.each do |f| %>
+            <% if f.id != current_user.id %>
+              <td><%= render f %></td>
               <td class="btn-flat disabled"> friend </td>
+            <% end %>
+            <% end %>
             </tr>
-          <% end %>
+            
+          
           </tbody>
     </table>
   </div>
@@ -41,9 +46,9 @@
         </thead>
 
         <tbody>
-         <% current_user.pending_friends.each do |f|%>
+         <% current_user.pending_friends.each do |f| %>
           <tr>
-            <td><%= f.name.upcase %></td>
+            <td><%= render f %></td>
             <td class="btn-flat disabled">Pending</td>
           </tr>
         <% end %>
@@ -67,7 +72,7 @@
         <% current_user.friend_requests.each do |fr|%>
           <tr>
            
-            <td><%= fr.name.upcase %></td> 
+            <td><%= render fr %></td> 
             <% @friendships.each do |friendship| %> 
               <% if friendship.user_id == fr.id and friendship.friend_id == current_user.id %>            
               <td><%= link_to 'Accept', confirm_path( :user_id => fr.id, :id => friendship.id ), method: :post, :class => "blue lighten-1 btn" %></td>             
@@ -91,10 +96,10 @@
         </thead>
 
         <tbody>
-        <% @suggested.each do |s|%>
+        <% @sug_users.each do |s| %>
           <tr>
             <% if s.id != current_user.id %>
-            <td><%= s.name.upcase %></td>
+            <td><%= render s %></td>
             <td><%= link_to 'Add friend', invite_path(:friend_id => s.id), method: :post, :class => "blue lighten-1 btn" %></td> 
             <% end %>
           </tr>

@@ -1,2 +1,202 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<div class="row">
+  <aside class="col l2">
+    <section>
+      <h4>
+         <%= @user.name.upcase %>
+      </h4>
+      <p> Name: <%= @user.name.upcase%> </p>
+      <p> Email: <%= @user.email%> </p>
+    </section>
+</aside>
+
+<% if current_user  %>
+  
+    
+    <% if current_user == @user %>
+    <div class="col s12 m7 l8">
+    <h2>InstaFeed</h2>
+      <div class="card">
+        <div class="pad-block pad-left col l8">
+        <div class="pad-block pad-left ">
+          <%= current_user.name %>
+        </div>
+
+        </div>
+       
+          <div class="card-content">
+            <div class="row">
+              <%= form_with(model: @post, local: true) do |f| %>
+                            
+                <div class="input-field col s12">
+                <i class="material-icons prefix">textsms</i>
+                <%= f.label :content %>
+                <%= f.text_field :content  %>
+
+                </div>
+                 </div>
+                </div>
+                <div class="card-action teal lighten-5">
+                  
+                  <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
+                    Add <i class="material-icons right ">add</i>
+                   <% end %>
+
+                </div>
+              <% end %>
+
+      </div>
+    </div>
+    <% end %>
+  </div>
+  
+  <div>
+    <div class="row">
+    <div class=" col l2"></div>
+    <div class="col l8"> 
+    <!-- show post -->
+    
+    <% @posts.each do |post| %>
+    <% if post.user == @user %>
+      <div class="card">
+
+         <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
+         
+            <div class="name"><%= post.user.name %></div>
+            <div class="pad-block pad-left"> <%= post.content %></div>
+              <div class="row  pad-block">
+              <%= form_with(model: @like, local: true) do |f| %>
+              <%= f.hidden_field :post_id, value: post.id %>
+                <div class="col lg1"> 
+                
+
+              <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
+                  Like <i class="material-icons right ">thumb_up</i>
+                 <% end %>
+                
+                </div>
+              <% end %>  
+                
+                <div class="col lg1" id="<%= post.id %>" > 
+                 <a href="#"> Comments </a>
+                
+                </div>
+
+                <% if current_user == post.user %>
+                  <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
+                  <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
+                <% end %>
+              </div>
+              <!-- likes count -->
+              <div class="row">
+              <div class="col lg2"></div>
+                <div><%= post.likes.count if post.likes.count > 0  %> </div> 
+              </div>
+         
+          </div>
+        </div>
+        <!--show comments -->
+        <div class="col l12" id=Com<%= post.id %>> 
+        
+          <% post.comments.each do |comment| %>
+            <div class="card-content">
+                  <div class="row">
+                    <div class="col l1"></div>  
+                    <div class="commenter l8"><%= comment.user.name %></div>
+                      <div class="row">
+                       
+                        
+                        <div class="col l1"></div>
+                          <div class="col l3 row"> <%= comment.content %></div>
+
+                            <% if current_user %>
+                              <div class="col l1">
+                              <!-- likes for comments -->
+                              <%= form_with(model: @like, local: true) do |f| %>
+                                <%= f.hidden_field :comment_id, value: comment.id %>
+                                
+                  
+
+                                <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
+                                  Like <i class="material-icons right "></i>
+                                <% end %>
+                              <% end %> 
+                            <% end %> 
+                            <!-- comments likes count-->
+                            <div class="col l1">
+                                <div><%= comment.likes.count if comment.likes.count > 0 %> </div>
+                            </div>
+                          </div>
+                            <!-- end likes comments-->
+
+                        <% if current_user == comment.user %>
+                          <div class="col l1"><%= link_to 'Edit', edit_comment_path(comment) %></div>
+                          <div class="col l1"><%= link_to "Delete", comment_path(comment.id), :method => :delete %></div>
+                        <% end %>
+                      </div>
+              </div>
+            </div>
+          <% end %>
+
+
+
+          </div>
+
+        <!-- write comment -->
+        <div class="card-content">
+          <div class="row">
+              <%= form_with(model: @comment, local: true) do |f| %>
+                <div class="input-field col s12">
+                <i class="">Comment</i>
+                <%= f.label :content %>
+                <%= f.text_field :content  %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                </div>
+                <div class="card-action">
+                  <a ><%= f.submit %></a>
+                </div>
+              <% end %>
+          </div>
+        </div>
+        
+    <% end %>
+    <% end %>
+    <!-- end show post  -->
+
+    </div>
+    </div>
+</div>
+<% else %>
+  <div class="row">
+    <div class="col l3"></div>
+      
+      <div class="col s12 m7 l6 center-align">
+      <h2 >BookFace</h2>
+      <h3>Please become a user</h3>
+      <h3>You would not regret it ;)</h3>
+
+      <%= link_to 'Sign up', new_user_registration_path %>
+      <%= link_to 'Sign in', new_user_session_path %>
+    </div>
+  </div>
+<% end %>
+<script>
+function isHidden(el) {
+    return ($(el).is(":visible"))
+}
+<% @posts.each do |post| %>
+      $("#<%= post.id %>").click(function() {
+        alert($("#Com<%= post.id %>").is(":visible"));
+        if(isHidden("#Com<%= post.id %>")) {
+          
+          $( "#Com<%= post.id %>" ).hide( "slow" );
+
+        } else {
+
+          $( "#Com<%= post.id %>" ).show( "slow" );
+        }
+      });
+<% end %>
+
+</script>

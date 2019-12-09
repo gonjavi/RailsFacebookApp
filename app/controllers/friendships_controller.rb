@@ -7,8 +7,10 @@ class FriendshipsController < ApplicationController
   def index
     @friendships = Friendship.all
     @friendship = Friendship.new
-    @sug_users = User.all
-    @suggested = User.all
+    @sug_users = User.left_outer_joins(:friendships)
+    @suggested = User.left_outer_joins(:friendships)
+    @friends2 = User.joins(:inverse_friendships).where(friendships: { confirmed: true })
+    @friends = User.joins(:friendships).where(friendships: { confirmed: true })
   end
 
   def new

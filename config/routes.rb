@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :posts
   root 'posts#index'
   devise_for :users
+  resources :users, only: [:show]
   resources :comments
   resources :likes
   resources :friendships#, only: %i[index edit update create destroy] 
