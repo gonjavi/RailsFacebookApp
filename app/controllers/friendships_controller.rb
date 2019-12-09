@@ -7,10 +7,12 @@ class FriendshipsController < ApplicationController
   def index
     @friendships = Friendship.all
     @friendship = Friendship.new
-    @sug_users = User.left_outer_joins(:friendships)
+    # @sug_users = User.left_outer_joins(:friendships)
     @suggested = User.left_outer_joins(:friendships)
     @friends2 = User.joins(:inverse_friendships).where(friendships: { confirmed: true })
     @friends = User.joins(:friendships).where(friendships: { confirmed: true })
+    @users = User.all_except(current_user)
+    @sug_users =  @users - @friends
   end
 
   def new

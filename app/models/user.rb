@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: { string: true }, length: { minimum: 2 }
   has_many :friendships
   has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
+  scope :all_except, ->(user) { where.not(id: user) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
