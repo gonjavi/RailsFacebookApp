@@ -15,15 +15,15 @@ class User < ApplicationRecord
   
   def friends
     friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
-    friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
+    friends_array += inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
     friends_array.compact
   end
 
-  def friends2
-    friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
-    friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
-    friends_array.compact
-  end
+  #def sug_users
+   # friends_array = friendships.map{|friendship| friendship.friend } - @users
+    #friends_array += inverse_friendships.map{|friendship| friendship.user} - @users
+    #friends_array.compact
+  #end
   
   # Users who have yet to confirme friend requests
   def pending_friends

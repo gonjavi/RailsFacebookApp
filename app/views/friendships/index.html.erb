@@ -16,9 +16,7 @@
                 <th>Status</th>
             </tr>
           </thead>
-
           <tbody>
-          
             <tr>
             <% current_user.friends.each do |f| %>
             <% if f.id != current_user.id %>

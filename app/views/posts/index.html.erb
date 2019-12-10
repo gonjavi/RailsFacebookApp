@@ -44,6 +44,8 @@
     <div class="col l8"> 
     <!-- show post -->
     <% @posts.each do |post| %>
+      <% if current_user.friends.each do|f| %>
+         <% if f == post.user or post.user == current_user %> 
       <div class="card">
 
          <div class="card-content">
@@ -145,7 +147,9 @@
               <% end %>
           </div>
         </div>
-        
+        <% end %>
+       <% end %> 
+     <% end %>   
     <% end %>
     <!-- end show post  -->
 
