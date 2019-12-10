@@ -1,15 +1,11 @@
 
 <div class="container">
-  <div class="">
-      <h1 class="center-alingn">Friendships</h1>
-  </div>
+
   
 
   <div class="row">
     <table class="highlight">
-      <div class="col 12 flow-text">
         <h3>Friends</h3>
-      </div>
           <thead>
             <tr>
                 <th>Name</th>
@@ -17,14 +13,17 @@
             </tr>
           </thead>
           <tbody>
+          <% current_user.friends.each do |f| %>
             <tr>
-            <% current_user.friends.each do |f| %>
-            <% if f.id != current_user.id %>
-              <td><%= render f %></td>
-              <td class="btn-flat disabled"> friend </td>
-            <% end %>
-            <% end %>
-            </tr>
+              <div class="col 12">
+
+                <% if f.id != current_user.id %>
+                  <td><%= render f %></td>
+                  <td class="btn-flat disabled"> friend </td>
+                <% end %>
+
+              </tr>
+          <% end %>
             
           
           </tbody>
@@ -94,7 +93,7 @@
         </thead>
 
         <tbody>
-        <% @sug_users.each do |s| %>
+        <% (@users - current_user.friends).each do |s| %>
           <tr>
             <% if s.id != current_user.id %>
             <td><%= render s %></td>
