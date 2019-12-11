@@ -21,7 +21,7 @@ RSpec.describe FriendshipsController, type: :controller do
   let(:invalid_attributes) { { friend_id: nil, user_id: nil } }
 
   describe 'FRIENDSHIP #' do
-    it "renders the index template" do
+    it 'renders the index template' do
       get :index
       expect(response).to render_template('index')
     end

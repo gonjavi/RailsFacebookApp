@@ -7,7 +7,6 @@ class FriendshipsController < ApplicationController
   def index
     @friendships = Friendship.all
     @friendship = Friendship.new
-    @users = User.all_except(current_user)
   end
 
   def new

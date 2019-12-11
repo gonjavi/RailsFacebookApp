@@ -9,8 +9,8 @@ end
 RSpec.describe UsersController, type: :controller do
   sign_me_in
 
-  describe "GET Users  #show" do
-    it "renders template users show" do
+  describe 'GET Users  #show' do
+    it 'renders template users show' do
       get :show
       expect(response).to render_template('show')
     end
