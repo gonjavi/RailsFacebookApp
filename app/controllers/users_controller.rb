@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
@@ -9,8 +11,5 @@ class UsersController < ApplicationController
     @comment = Comment.new
     @like = Like.new
     @likes = Like.all
-  end
-
-  def index
   end
 end

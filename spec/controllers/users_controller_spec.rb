@@ -1,19 +1,18 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
+RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+end
+
 RSpec.describe UsersController, type: :controller do
+  sign_me_in
 
-  describe "GET #show" do
-    it "returns http success" do
+  describe "GET Users  #show" do
+    it "renders template users show" do
       get :show
-      expect(response).to have_http_status(:success)
+      expect(response).to render_template('show')
     end
   end
-
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end
