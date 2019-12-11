@@ -4,22 +4,27 @@
   
 
   <div class="row">
-    <table class="highlight">
-        <h3>Friends</h3>
+    <div class="col l12">
+     <h3>Friends</h3>
+    </div>
+    <table class="highlight col l12">
+        
           <thead>
             <tr>
                 <th>Name</th>
                 <th>Status</th>
+                <th> Action </th>
             </tr>
           </thead>
           <tbody>
           <% current_user.friends.each do |f| %>
             <tr>
-              <div class="col 12">
+              <div>
 
                 <% if f.id != current_user.id %>
                   <td><%= render f %></td>
                   <td class="btn-flat disabled"> friend </td>
+                  <td> delete </td>
                 <% end %>
 
               </tr>
@@ -39,6 +44,7 @@
           <tr>
               <th>Name</th>
               <th>Status</th>
+              <th> Action </th>
           </tr>
         </thead>
 
@@ -47,6 +53,7 @@
           <tr>
             <td><%= render f %></td>
             <td class="btn-flat disabled">Pending</td>
+            <td> delete </td>
           </tr>
         <% end %>
         </tbody>
@@ -62,19 +69,21 @@
           <tr>
               <th>Name</th>
               <th>Status</th>
+              <th> Action </th>
           </tr>
         </thead>
 
         <tbody>
         <% current_user.friend_requests.each do |fr|%>
           <tr>
-           
             <td><%= render fr %></td> 
             <% @friendships.each do |friendship| %> 
               <% if friendship.user_id == fr.id and friendship.friend_id == current_user.id %>            
               <td><%= link_to 'Accept', confirm_path( :user_id => fr.id, :id => friendship.id ), method: :post, :class => "blue lighten-1 btn" %></td>             
               <% end %>
+              
             <% end %>
+            <td> delete </td>
           </tr>
         <% end %>
   </table>
@@ -93,7 +102,7 @@
         </thead>
 
         <tbody>
-        <% (@users - current_user.friends).each do |s| %>
+        <% current_user.sug_users.each do |s| %>
           <tr>
             <% if s.id != current_user.id %>
             <td><%= render s %></td>

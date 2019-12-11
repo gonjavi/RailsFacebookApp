@@ -19,11 +19,11 @@ class User < ApplicationRecord
     friends_array.compact
   end
 
-  #def sug_users
-   # friends_array = friendships.map{|friendship| friendship.friend } - @users
-    #friends_array += inverse_friendships.map{|friendship| friendship.user} - @users
-    #friends_array.compact
-  #end
+  def sug_users
+    users_array = User.all - friendships.map{|friendship| friendship.friend if friendship.user_id}
+    users_array -= inverse_friendships.map{|friendship| friendship.user if friendship.friend_id}
+    users_array.compact
+  end
   
   # Users who have yet to confirme friend requests
   def pending_friends
@@ -33,6 +33,11 @@ class User < ApplicationRecord
   # Users who have requested to be friends
   def friend_requests
     inverse_friendships.map{|friendship| friendship.user if !friendship.confirmed}.compact
+  end
+
+  def delete_friend(user)
+    friendship = friendships.find { |f| f.friend_id == user.id }
+    friendship.destroy
   end
 
   def confirm_friend(user)
