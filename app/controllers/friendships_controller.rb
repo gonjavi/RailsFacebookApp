@@ -43,6 +43,10 @@ class FriendshipsController < ApplicationController
 
   def destroy
     @friendship.destroy
+    respond_to do |format|
+      format.html { redirect_to friendships_path, notice: 'Friendshid or request was successfully deleted.' }
+      format.json { head :no_content }
+    end
   end 
 
   private

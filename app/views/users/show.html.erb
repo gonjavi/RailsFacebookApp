@@ -9,7 +9,7 @@
     
     <% if current_user == @user %>
     <div class="col s12 m7 l8">
-    <h2>InstaFeed</h2>
+    <h2><%= current_user.name.upcase %>'s Posts</h2>
       <div class="card">
         <div class="pad-block pad-left col l8">
         <div class="pad-block pad-left ">

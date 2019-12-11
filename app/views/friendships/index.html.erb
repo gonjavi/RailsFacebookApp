@@ -19,14 +19,17 @@
           <tbody>
           <% current_user.friends.each do |f| %>
             <tr>
-              <div>
-
-                <% if f.id != current_user.id %>
+                            
+              <% if f.id != current_user.id %>
+                
                   <td><%= render f %></td>
                   <td class="btn-flat disabled"> friend </td>
-                  <td> delete </td>
+                <% @friendships.each do |fshid|%>
+                <% if (fshid.user_id == f.id or fshid.friend_id == f.id) and (current_user.id == fshid.user_id or current_user.id == fshid.friend_id) %>
+                  <td><%= link_to 'Delete Friend', delete_path(:id => fshid.id), :method => :delete %></td>
                 <% end %>
-
+                <% end %>
+              <% end %>
               </tr>
           <% end %>
             
@@ -53,7 +56,11 @@
           <tr>
             <td><%= render f %></td>
             <td class="btn-flat disabled">Pending</td>
-            <td> delete </td>
+            <% @friendships.each do |fshid|%>
+                <% if (fshid.user_id == f.id or fshid.friend_id == f.id) and (current_user.id == fshid.user_id or current_user.id == fshid.friend_id) %>
+                  <td><%= link_to 'Delete Request', delete_path(:id => fshid.id), :method => :delete %></td>
+                <% end %>
+            <% end %>
           </tr>
         <% end %>
         </tbody>
@@ -83,7 +90,11 @@
               <% end %>
               
             <% end %>
-            <td> delete </td>
+            <% @friendships.each do |fshid|%>
+                <% if (fshid.user_id == fr.id or fshid.friend_id == fr.id) and (current_user.id == fshid.user_id or current_user.id == fshid.friend_id) %>
+                  <td><%= link_to 'Delete Request', delete_path(:id => fshid.id), :method => :delete %></td>
+                <% end %>
+            <% end %>
           </tr>
         <% end %>
   </table>
