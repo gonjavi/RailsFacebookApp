@@ -12,7 +12,7 @@ class FriendshipsController < ApplicationController
 
   def new
     @friendship = Friendship.new
-  end    
+  end
 
   def create
     @friendship = Friendship.new(friendship_params)
@@ -40,7 +40,7 @@ class FriendshipsController < ApplicationController
       format.html { redirect_to friendships_path, notice: 'Friendshid or request was successfully deleted.' }
       format.json { head :no_content }
     end
-  end 
+  end
 
   private
 
@@ -51,5 +51,4 @@ class FriendshipsController < ApplicationController
   def friendship_params
     params.permit(:friend_id, :confirmed, :user_id, :id)
   end
-
 end

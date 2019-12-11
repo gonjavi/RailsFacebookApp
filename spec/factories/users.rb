@@ -7,10 +7,9 @@ FactoryBot.define do
     password { '123456' }
   end
 
-  factory :friend, class: User  do
+  factory :friend, class: User do
     name { 'steve' }
     email { 'steve12343@steven.com' }
     password { '123456' }
   end
 end
-
