@@ -3,6 +3,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @friendships = Friendship.all
+    @friendship = Friendship.new
+  end
+
   def show
     @user = User.find_by(id: params[:format])
     @posts = Post.all.order('created_at DESC').all

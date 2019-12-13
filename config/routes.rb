@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :posts
   root 'posts#index'
   devise_for :users
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
   resources :comments
   resources :likes
   resources :friendships
