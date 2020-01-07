@@ -40,7 +40,12 @@ class User < ApplicationRecord
     friendship.save
   end
 
-  def friends_and_own_posts
-    Post.where(user: (self.friends + self))
+  def friends_posts_and_own_posts
+    posts_array = posts.map { |post| post if post.user == self  }
+    self.friends.each do|f|
+      posts_array += f.posts
+    end
+    posts_array.compact
+    posts_array.sort_by(&:created_at).reverse
   end
 end
