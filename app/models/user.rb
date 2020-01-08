@@ -53,8 +53,8 @@ class User < ApplicationRecord
   end
 
   def show_friendship_requests(user)
-    friendships_array = inverse_friendships.map { |f| f if f.user == user and f.friend == self }
-    friendships_array.compact
+    fsp_array = inverse_friendships.map { |f| f if f.user == user and f.friend == self }
+    fsp_array.compact
   end
 
   def confirm_friendshid(user)
@@ -63,7 +63,7 @@ class User < ApplicationRecord
   end
 
   def confirm_friend(user)
-    friendship = inverse_friendships.find { |friend| friend.user == user and friend.friend == self }
+    friendship = inverse_friendships.find { |f| f.user == user and f.friend == self }
     friendship.confirmed = true
     friendship.save
   end
