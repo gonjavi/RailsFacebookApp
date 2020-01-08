@@ -9,7 +9,7 @@ AllCops:
   
 fixers:
     enable: true
-Metrics/LineLength:
+Layout/LineLength:
   Max: 145
 Metrics/MethodLength:
   Include: ["app/controllers/*"]
