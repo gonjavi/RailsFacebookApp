@@ -46,10 +46,8 @@ class User < ApplicationRecord
   end
 
   def show_friend_requests
-    friend_r_array = inverse_friendships.map { |friendship|
-      friendship.user if friendship.confirmed == false and friendship.friend == self
-    }
-    friend_r_array.compact
+    f_r_array = inverse_friendships.map { |friendship| friendship.user if friendship.confirmed == false and friendship.friend == self }
+    f_r_array.compact
   end
 
   def show_friendship_requests(user)

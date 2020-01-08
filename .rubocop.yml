@@ -8,7 +8,7 @@ AllCops:
   DisplayCopNames: true
 
 Metrics/LineLength:
-  Max: 135
+  Max: 235
 Metrics/MethodLength:
   Include: ["app/controllers/*"]
   Max: 20
