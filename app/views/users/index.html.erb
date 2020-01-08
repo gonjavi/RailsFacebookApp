@@ -78,7 +78,7 @@
         <% current_user.show_friend_requests.each do |fr|%>
           <tr>
             <td><%= render fr %></td> 
-            <% current_user.confirm_friendshid(fr).each do |friendship| %> 
+            <% current_user.confirm_friendship(fr).each do |friendship| %> 
               <td><%= link_to 'Accept', confirm_path( :user_id => fr.id, :id => friendship.id ), method: :post, :class => "blue lighten-1 btn" %></td>             
             <% end %>
 

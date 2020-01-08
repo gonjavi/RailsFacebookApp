@@ -55,7 +55,7 @@ class User < ApplicationRecord
     fsp_array.compact
   end
 
-  def confirm_friendshid(user)
+  def confirm_friendship(user)
     confirm_f_array = inverse_friendships.map { |f| f if f.user == user and f.friend == self }
     confirm_f_array.compact
   end
