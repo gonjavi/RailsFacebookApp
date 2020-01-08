@@ -30,7 +30,7 @@ RSpec.describe FriendshipsController, type: :controller do
       expect do
         post :create, params: valid_attributes
       end.to change(Friendship, :count).by(1)
-      expect(response).to redirect_to(friendships_path)
+      expect(response).to redirect_to(users_path)
       expect(flash[:notice]).to match(/Friendship request sent*/)
     end
 
@@ -46,7 +46,7 @@ RSpec.describe FriendshipsController, type: :controller do
       expect do
         delete 'destroy', params: { id: @friendship.id }
       end.to change(Friendship, :count).by(-1)
-      expect(response).to redirect_to(friendships_path)
+      expect(response).to redirect_to(users_path)
       expect(flash[:notice]).to match(/Friendshid or request was successfully deleted.*/)
     end
   end

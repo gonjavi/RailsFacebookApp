@@ -46,14 +46,13 @@
         </thead>
 
         <tbody>
-         <% current_user.pending_friends.each do |f| %>
+         <% current_user.show_pending_friends.each do |f| %>
           <tr>
             <td><%= render f %></td>
             <td class="btn-flat disabled">Pending</td>
-            <% @friendships.each do |fshid|%>
-                <% if (fshid.user_id == f.id or fshid.friend_id == f.id) and (current_user.id == fshid.user_id or current_user.id == fshid.friend_id) %>
-                  <td><%= link_to 'Delete Request', delete_path(:id => fshid.id), :method => :delete %></td>
-                <% end %>
+            <% current_user.show_friendships(f).each do |fshid| %>
+                <td><%= link_to 'Delete Request', delete_path(:id => fshid.id), :method => :delete %></td>
+               
             <% end %>
           </tr>
         <% end %>
@@ -76,19 +75,15 @@
         </thead>
 
         <tbody>
-        <% current_user.friend_requests.each do |fr|%>
+        <% current_user.show_friend_requests.each do |fr|%>
           <tr>
             <td><%= render fr %></td> 
-            <% @friendships.each do |friendship| %> 
-              <% if friendship.user_id == fr.id and friendship.friend_id == current_user.id %>            
+            <% current_user.confirm_friendshid(fr).each do |friendship| %> 
               <td><%= link_to 'Accept', confirm_path( :user_id => fr.id, :id => friendship.id ), method: :post, :class => "blue lighten-1 btn" %></td>             
-              <% end %>
-              
             <% end %>
-            <% @friendships.each do |fshid|%>
-                <% if (fshid.user_id == fr.id or fshid.friend_id == fr.id) and (current_user.id == fshid.user_id or current_user.id == fshid.friend_id) %>
-                  <td><%= link_to 'Delete Request', delete_path(:id => fshid.id), :method => :delete %></td>
-                <% end %>
+
+            <% current_user.show_friendship_requests(fr).each do |fshid| %>
+                <td><%= link_to 'Delete Request', delete_path(:id => fshid.id), :method => :delete %></td>
             <% end %>
           </tr>
         <% end %>

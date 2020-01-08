@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
     @friendships = Friendship.all
     @friendship = Friendship.new
   end
-  
+
   def new
     @friendship = Friendship.new
   end

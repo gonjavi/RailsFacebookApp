@@ -24,28 +24,47 @@ class User < ApplicationRecord
     users_array.compact
   end
 
-  # Users who have yet to confirme friend requests
-  def pending_friends
-    friendships.map { |friendship| friendship.friend if friendship.confirmed == false }.compact
-  end
-
-  # Users who have requested to be friends
-  def friend_requests
-    inverse_friendships.map { |friendship| friendship.user if friendship.confirmed == false }.compact
-  end
-
-  def confirm_friend(user)
-    friendship = inverse_friendships.find { |friend| friend.user == user }
-    friendship.confirmed = true
-    friendship.save
-  end
-
   def friends_posts_and_own_posts
-    posts_array = posts.map { |post| post if post.user == self  }
-    self.friends.each do|f|
+    posts_array = posts.map { |post| post if post.user == self }
+    self.friends.each do |f|
       posts_array += f.posts
     end
     posts_array.compact
     posts_array.sort_by(&:created_at).reverse
+  end
+
+  def show_pending_friends
+    pending_f_array = friendships.map { |friendship|
+      friendship.friend if friendship.confirmed == false and friendship.user == self
+    }
+    pending_f_array.compact
+  end
+
+  def show_friendships(pending_user)
+    friendships_array = friendships.map { |f| f if f.user == self and f.friend == pending_user }
+    friendships_array.compact
+  end
+
+  def show_friend_requests
+    friend_r_array = inverse_friendships.map { |friendship|
+      friendship.user if friendship.confirmed == false and friendship.friend == self
+    }
+    friend_r_array.compact
+  end
+
+  def show_friendship_requests(user)
+    friendships_array = inverse_friendships.map { |f| f if f.user == user and f.friend == self }
+    friendships_array.compact
+  end
+
+  def confirm_friendshid(user)
+    confirm_f_array = inverse_friendships.map { |f| f if f.user == user and f.friend == self }
+    confirm_f_array.compact
+  end
+
+  def confirm_friend(user)
+    friendship = inverse_friendships.find { |friend| friend.user == user and friend.friend == self }
+    friendship.confirmed = true
+    friendship.save
   end
 end
