@@ -5,12 +5,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
 
   def index
-    @posts = Post.all.order('created_at DESC').all
-    @comments = Comment.all.order('created_at ASC').all
+    @posts = Post.all
     @post = Post.new
     @comment = Comment.new
-    @like = Like.new
-    @likes = Like.all
+    @like = Like.new    
   end
 
   def show; end
