@@ -1,5 +1,4 @@
 
-<% if current_user  %>
   <div class="row">
     <div class="col l2"></div>
     
@@ -159,25 +158,12 @@
     </div>
     </div>
 </div>
-<% else %>
-  <div class="row">
-    <div class="col l3"></div>
-      
-      <div class="col s12 m7 l6 center-align">
-      <h2 >BookFace</h2>
-      <h3>Please become a user</h3>
-      <h3>You would not regret it ;)</h3>
 
-      <%= link_to 'Sign up', new_user_registration_path %>
-      <%= link_to 'Sign in', new_user_session_path %>
-    </div>
-  </div>
-<% end %>
 <script>
 function isHidden(el) {
     return ($(el).is(":visible"))
 }
-<% @posts.each do |post| %>
+<% current_user.friends_posts_and_own_posts.each do |post| %>
       $("#<%= post.id %>").click(function() {
         if(isHidden("#Com<%= post.id %>")) {
           $( "#Com<%= post.id %>" ).hide("slow");
