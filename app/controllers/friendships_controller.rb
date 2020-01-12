@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FriendshipsController < ApplicationController
-  before_action :set_friendship, only: %i[show update destroy]
+  before_action :set_friendship, only: %i[show update]
   before_action :authenticate_user!, except: %i[show]
 
   def index
@@ -34,7 +34,11 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship.destroy
+    friend = User.find_by(id: params[:friend_id])
+    one = Friendship.find {|f| f if f.user == current_user and f.friend == friend }
+    one.destroy
+    two = Friendship.find { |f| f if f.user == friend and f.friend == current_user }
+    two.destroy
     respond_to do |format|
       format.html { redirect_to users_path, notice: 'Friendshid or request was successfully deleted.' }
       format.json { head :no_content }

@@ -36,13 +36,5 @@ RSpec.describe FriendshipsController, type: :controller do
       expect(response).to render_template('posts/index')
       expect(flash[:danger]).to match(/Invalid request*/)
     end
-
-    it 'deletes a friendship' do
-      expect do
-        delete 'destroy', params: { id: @friendship.id }
-      end.to change(Friendship, :count).by(-1)
-      expect(response).to redirect_to(users_path)
-      expect(flash[:notice]).to match(/Friendshid or request was successfully deleted.*/)
-    end
   end
 end

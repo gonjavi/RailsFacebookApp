@@ -9,5 +9,8 @@ class Friendship < ApplicationRecord
     friendship = inverse_friendships.find { |f| f.user == user and f.friend == self }
     friendship.confirmed = true
     friendship.save
+    Friendship.create(user_id: self.id,
+      friend_id: user.id,
+      confirmed: true)
   end
 end
