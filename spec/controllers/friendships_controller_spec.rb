@@ -21,16 +21,11 @@ RSpec.describe FriendshipsController, type: :controller do
   let(:invalid_attributes) { { friend_id: nil, user_id: nil } }
 
   describe 'FRIENDSHIP #' do
-    it 'renders the index template' do
-      get :index
-      expect(response).to render_template('index')
-    end
-
     it 'creates a friendship request' do
       expect do
         post :create, params: valid_attributes
       end.to change(Friendship, :count).by(1)
-      expect(response).to redirect_to(friendships_path)
+      expect(response).to redirect_to(users_path)
       expect(flash[:notice]).to match(/Friendship request sent*/)
     end
 
@@ -40,14 +35,6 @@ RSpec.describe FriendshipsController, type: :controller do
       end.to change(Friendship, :count).by(0)
       expect(response).to render_template('posts/index')
       expect(flash[:danger]).to match(/Invalid request*/)
-    end
-
-    it 'deletes a friendship' do
-      expect do
-        delete 'destroy', params: { id: @friendship.id }
-      end.to change(Friendship, :count).by(-1)
-      expect(response).to redirect_to(friendships_path)
-      expect(flash[:notice]).to match(/Friendshid or request was successfully deleted.*/)
     end
   end
 end

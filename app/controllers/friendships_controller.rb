@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FriendshipsController < ApplicationController
-  before_action :set_friendship, only: %i[show update destroy]
+  before_action :set_friendship, only: %i[show update]
   before_action :authenticate_user!, except: %i[show]
 
   def index
@@ -18,7 +18,7 @@ class FriendshipsController < ApplicationController
     @friendship.user_id = current_user.id
     respond_to do |format|
       if @friendship.save
-        format.html { redirect_to friendships_path, notice: 'Friendship request sent' }
+        format.html { redirect_to users_path, notice: 'Friendship request sent' }
       else
         format.html { render 'posts/index' }
         flash.now[:danger] = 'Invalid request'
@@ -30,13 +30,17 @@ class FriendshipsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     current_user.confirm_friend(@user)
     flash[:success] = 'Friend Request Confirmed'
-    redirect_to friendships_path
+    redirect_to users_path
   end
 
   def destroy
-    @friendship.destroy
+    friend = User.find_by(id: params[:friend_id])
+    one = Friendship.find {|f| f if f.user == current_user and f.friend == friend }
+    one.destroy
+    two = Friendship.find { |f| f if f.user == friend and f.friend == current_user }
+    two.destroy
     respond_to do |format|
-      format.html { redirect_to friendships_path, notice: 'Friendshid or request was successfully deleted.' }
+      format.html { redirect_to users_path, notice: 'Friendshid or request was successfully deleted.' }
       format.json { head :no_content }
     end
   end
