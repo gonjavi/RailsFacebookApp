@@ -25,4 +25,4 @@ $ rails db:migrate
 ```bash
 $ rails s
 ```
-
+ 
