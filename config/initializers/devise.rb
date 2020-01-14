@@ -291,11 +291,5 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   #config.omniauth :facebook, "1846499568984861", "063b2ed04dee239e8bade14b210babd4"
-  config.omniauth :facebook, ENV['1846499568984861'], ENV['063b2ed04dee239e8bade14b210babd4'],
-                scope: 'public_profile,email',
-                info_fields: 'email,first_name,last_name,gender,birthday,location,picture',
-                client_options: {
-                    site: 'https://graph.facebook.com/v5.0',
-                    authorize_url: "https://www.facebook.com/v5.0/dialog/oauth"
-                }
+  config.omniauth :facebook, "1846499568984861", "063b2ed04dee239e8bade14b210babd4", client_options: { ssl: { ca_file: '/usr/lib/ssl/certs/ca-certificates.crt' } }
 end
