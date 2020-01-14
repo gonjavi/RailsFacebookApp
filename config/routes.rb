@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post '/invite',  to: 'friendships#create'
   put '/accept',  to: 'friendships#update'
   post '/confirm',  to: 'friendships#confirm'
+  get 'politics', to: 'services#politics'
+  get '/conditions', to: 'services#conditions'
 end
