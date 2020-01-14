@@ -10,8 +10,6 @@
         <div><%= link_to 'Sign in', new_user_session_path %></div>
         <div><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></div>
         <div><%= link_to 'Sign up', new_user_registration_path %></div>
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
       </div>
     </div>
 </div>

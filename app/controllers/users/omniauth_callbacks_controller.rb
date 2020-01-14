@@ -1,12 +1,10 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    def facebook
-      if request.env["omniauth.auth"].info.email.blank?
-        redirect_to "/users/auth/facebook?auth_type=rerequest&scope=email"
-        return # be sure to include an return if there is code after this otherwise it will be executed
-      end
+    if request.env["omniauth.auth"].info.email.blank?
+      redirect_to "/users/auth/facebook?auth_type=rerequest&scope=email"
+      return # be sure to include an return if there is code after this otherwise it will be executed
     end
-    #implement the method below in your model (e.g. app/models/user.rb)
+    #the method below in your model (e.g. app/models/user.rb)
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
