@@ -291,5 +291,7 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   #config.omniauth :facebook, "1846499568984861", "063b2ed04dee239e8bade14b210babd4"
-  config.omniauth :facebook, "1846499568984861", "063b2ed04dee239e8bade14b210babd4", client_options: { ssl: { ca_file: '/usr/lib/ssl/certs/ca-certificates.crt' } }
+  #config.omniauth :facebook,"App ID", "App Secret", client_options: { ssl: { ca_file: '/usr/lib/ssl/certs/ca-certificates.crt' } }
+  config.omniauth :facebook, "App ID", "App Secret", callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  config.secret_key = ENV['config.secret_key'] if Rails.env.production?
 end
