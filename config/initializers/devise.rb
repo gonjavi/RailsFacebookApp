@@ -291,5 +291,5 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.omniauth :facebook, "App ID", "App Secret", callback_url: "https://bookfaces1.herokuapp.com/users/auth/facebook/callback"
-  config.secret_key = ENV['config.secret_key'] if Rails.env.production?
+  #config.secret_key = ENV['config.secret_key'] if Rails.env.production?
 end
