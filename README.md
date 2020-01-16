@@ -39,7 +39,7 @@ $ bundle install
 ```
 * Migrate the database with by :
 ```bash
-$ rails db:create and then $ rails db:migrate
+$ rails db:create and then, $ rails db:migrate
 ```
 * Simply run the app with :
 ```bash
