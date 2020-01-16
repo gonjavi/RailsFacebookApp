@@ -33,7 +33,7 @@ The project proposed is in the link below:
   ```
 
 ## Getting Ruby Set up and necessary gems
-* You would install the version of the gems listed in the Gemfile by :
+* You would install the gems listed in the Gemfile by :
 ```bash
 $ bundle install
 ```
