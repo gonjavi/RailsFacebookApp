@@ -290,6 +290,6 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  config.omniauth :facebook, Pusher.app_id, Pusher.secret, callback_url: "https://bookfaces1.herokuapp.com/users/auth/facebook/callback"
+  config.omniauth :facebook, ENV['pusher_app_id'], ENV['pusher_secret'], callback_url: "https://bookfaces1.herokuapp.com/users/auth/facebook/callback"
   #config.secret_key = ENV['config.secret_key'] if Rails.env.production?
 end
