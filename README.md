@@ -37,7 +37,7 @@ The project proposed is in the link below:
 ```bash
 $ bundle install
 ```
-* Migrate the database with by :
+* Migrate the database by:
 ```bash
 $ rails db:create and then, $ rails db:migrate
 ```
