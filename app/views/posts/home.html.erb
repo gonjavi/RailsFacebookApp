@@ -1,0 +1,15 @@
+ <div class="row">
+    <div class="col l3"></div>
+      
+      <div class="col s12 m7 l6 center-align">
+      <h2 >BookFace</h2>
+      <h3>Please become a user</h3>
+      <h3>You would not regret it ;)</h3>
+
+      <div class="row">
+        <div><%= link_to 'Sign in', new_user_session_path %></div>
+        <div><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></div>
+        <div><%= link_to 'Sign up', new_user_registration_path %></div>
+      </div>
+    </div>
+</div>
