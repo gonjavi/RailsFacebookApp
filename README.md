@@ -12,7 +12,7 @@ The project proposed is in the link below:
 - Github: [@github/gonjavi](https://github.com/gonjavi)
 - Linkedin: [linkedin](https://www.linkedin.com/in/g-javier-mancilla-a686a9178/)
 
- 👤 **Daniel alejandr Salgado**
+ 👤 **Daniel alejandro Salgado**
 
 - Github: [@github/alejocode](https://github.com/AlejoCode)
 - Linkedin: [linkedin](https://www.linkedin.com/in/daniel-alejandro-salgado-sanchez-13a740b1/)
