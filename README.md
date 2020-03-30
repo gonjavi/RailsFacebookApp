@@ -1,5 +1,5 @@
 ## Rails Facebook App :diamonds: 
->This project is a simple Facebook app developed with the framework Ruby on Rails, which includes the main features: registration, news feed, friendships requests, accepting friendship requests, deleting friends, posts, comments, and likes. We also implemented the optional sign-in with real Facebook by using Omniauth and Devise. In the future, other characteristics can be added. 
+>This project is a simple Facebook app developed with the framework Ruby on Rails, which includes the main features: registration, news feed, friendships requests, accepting friendship requests, deleting friends, posts, comments, and likes. We also implemented an optional sign-in with your real Facebook account by using Omniauth and Devise. In the future, other characteristics can be added. 
 
 ![screenshot](./fbook.png)
 
@@ -9,13 +9,13 @@ The project proposed is in the link below:
 ## Authors:
  👤 **Gonza Javier Mancilla**
 
-- Github: [@github/gonjavi](https://github.com/gonjavi)
-- Linkedin: [linkedin](https://www.linkedin.com/in/g-javier-mancilla-a686a9178/)
+- Github: [@gonjavi](https://github.com/gonjavi)
+- Linkedin: [@g-javier-mancilla](https://www.linkedin.com/in/g-mancillla)
 
  👤 **Daniel alejandro Salgado**
 
-- Github: [@github/alejocode](https://github.com/AlejoCode)
-- Linkedin: [linkedin](https://www.linkedin.com/in/daniel-alejandro-salgado-sanchez-13a740b1/)
+- Github: [@alejocode](https://github.com/AlejoCode)
+- Linkedin: [@d-salgado](https://www.linkedin.com/in/daniel-alejandro-salgado-sanchez-13a740b1/)
 
 ## Live Demo
 
