@@ -3,7 +3,7 @@
 
 ![screenshot](./fbook.png)
 
-The project proposed is in the link below:
+The project proposed is in the next link:
 <a href="https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project">www.theodinproject.com/final-project</a>
 
 ## Authors:
@@ -21,8 +21,44 @@ The project proposed is in the link below:
 
 [Live Demo Facebook App](https://bookfaces1.herokuapp.com/)
 
+## Login Information 
 
-## Tools Used
+You can use the next login information or create one to check the website: 
+
+- User: zora@espe.com
+- Password: 123456
+
+## List of Features
+
+- Sign up
+- Sign in
+- Sign out
+- Feeds main page
+- Friendships page
+- Send friend requests
+- Accept friend requests
+- See pending requests
+- Suggested users
+- Create posts
+- Delete posts
+- See friend's post and own post
+- See my own posts section
+- Edit my posts
+- Comment my friend's posts and my own posts
+- Delete my comments
+- Like comments and posts  
+
+## Future Updates/Improvements
+
+Add the following characteristics:
+
+- Add user photo
+- Post images
+- Delete account
+- Forgot your password section
+- Display profile section
+
+## Built With
 ```bash
   Ruby 2.6.3
  ```
