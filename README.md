@@ -82,7 +82,7 @@ Add the following characteristics:
   PostgresSQL
   ```
 
-## Getting Ruby Set up and necessary gems
+## Setup
 * Install the gems listed in the Gemfile by :
 ```bash
 $ bundle install
@@ -95,6 +95,14 @@ $ rails db:create and then, $ rails db:migrate
 ```bash
 $ rails s
 ```
+
+## RSpec Tests
+
+For RSpec testing run the following commands:
+
+- rails db:migrate RAILS_ENV=test
+- rspec --format documentation
+
 
 ## 🤝 Contributing
 
