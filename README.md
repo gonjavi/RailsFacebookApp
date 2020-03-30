@@ -32,6 +32,7 @@ You can use the next login information or create one to check the website:
 
 - Sign up
 - Sign in
+- Sign in with facebook account
 - Sign out
 - Feeds main page
 - Friendships page
