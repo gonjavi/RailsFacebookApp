@@ -93,7 +93,7 @@ $ rails db:create and then, $ rails db:migrate
 ```
 * Simply run the app with :
 ```bash
-$ rails s
+$ rails server or rails s
 ```
 
 ## RSpec Tests
