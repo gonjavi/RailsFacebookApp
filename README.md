@@ -38,7 +38,7 @@ You can use the next login information or create one to check the website:
 - Friendships page
 - Send friend requests
 - Accept friend requests
-- See pending requests
+- View pending requests
 - Suggested users
 - Create posts
 - Delete posts
