@@ -32,9 +32,9 @@ You can use the next login information or create one to check the website:
 
 - Sign up
 - Sign in
-- Sign in with facebook account
+- Sign in with Facebook account
 - Sign out
-- Feeds main page
+- Feed/Main page
 - Friendships page
 - Send friend requests
 - Accept friend requests
@@ -42,10 +42,10 @@ You can use the next login information or create one to check the website:
 - Suggested users
 - Create posts
 - Delete posts
-- See friend's post and own post
-- See my own posts section
+- View posts shared by friends
+- View my own posts 
 - Edit my posts
-- Comment my friend's posts and my own posts
+- Comment on friend's posts and you own
 - Delete my comments
 - Like comments and posts  
 
