@@ -4,6 +4,9 @@ $secondary-color: color("yellow", "base") !default;
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+html {
+  min-height: 100%;
+}
 body {
     background-color: white;
 }    
@@ -27,3 +30,8 @@ body {
       margin: 0 0 30px 0;
     }
   }
+
+  .count {
+    margin-left: 50px;
+  }
+

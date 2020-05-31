@@ -18,6 +18,7 @@
 
 /node_modules
 /yarn-error.log
+/vendor
 
 /public/assets
 .byebug_history
