@@ -53,7 +53,7 @@
               <div class="row  pad-block">
               <%= form_with(model: @like, local: true) do |f| %>
               <%= f.hidden_field :post_id, value: post.id %>
-                <div class="col lg1"> 
+                <div class="col l1"> 
                 
 
               <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
@@ -63,26 +63,26 @@
                 </div>
               <% end %>  
                 
-                <div class="col lg1" id="<%= post.id %>" > 
-                 <a> Comments </a>
+               <div class="col l3" id="<%= post.id %>" > 
+                 <a href="#"> Comments </a>
                 
                 </div>
 
                 <% if current_user == post.user %>
-                  <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
-                  <div class="col lg1"><%= link_to 'Delete', post_path(post.id), :method => :delete %></div>
+                  <div class="col l1"><%= link_to 'Edit', edit_post_path(post) %></div>
+                  <div class="col l1"><%= link_to 'Delete', post_path(post.id), :method => :delete %></div>
                 <% end %>
               </div>
               <!-- likes count -->
               <div class="row">
-              <div class="col lg2"></div>
+              <div class="col l2"></div>
                 <div><%= post.likes.count if post.likes.count > 0  %> </div> 
               </div>
          
           </div>
         </div>
         <!--show comments -->
-        <div class="col l12" id=Com<%= post.id %>> 
+        <div class="col l12 m12 s12" id=Com<%= post.id %>> 
         
           <% post.comments.each do |comment| %>
             <div class="collection">
