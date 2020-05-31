@@ -1,6 +1,6 @@
 
 <div class="row">
-  <aside class="col l2">
+  <aside >
 
   </aside>
 
@@ -8,8 +8,8 @@
   
     
     <% if current_user == @user %>
-    <div class="col s12 m7 l8">
-    <h2><%= current_user.name.upcase %>'s Posts</h2>
+    <div class="col s12 m8 l8 offset-m2 offset-l2">
+      <h2><%= current_user.name.upcase %>'s Posts</h2>
       <div class="card">
         <div class="pad-block pad-left col l8">
         <div class="pad-block pad-left ">
@@ -46,8 +46,8 @@
   
   <div>
     <div class="row">
-    <div class=" col l2"></div>
-    <div class="col l8"> 
+    
+    <div class="col s9 m8 offset-m2 l8 offset-l2"> 
     <!-- show post -->
     
     <% @posts.each do |post| %>
@@ -62,7 +62,7 @@
               <div class="row  pad-block">
               <%= form_with(model: @like, local: true) do |f| %>
               <%= f.hidden_field :post_id, value: post.id %>
-                <div class="col lg1"> 
+                <div class="col l2"> 
                 
 
               <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
@@ -72,45 +72,45 @@
                 </div>
               <% end %>  
                 
-                <div class="col lg1" id="<%= post.id %>" > 
+                <div class="col l3" id="<%= post.id %>" > 
                  <a href="#"> Comments </a>
                 
                 </div>
 
                 <% if current_user == post.user %>
-                  <div class="col lg1"><%= link_to 'Edit', edit_post_path(post) %></div>
-                  <div class="col lg1"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
+                  <div class="col l2"><%= link_to 'Edit', edit_post_path(post) %></div>
+                  <div class="col l2"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
                 <% end %>
               </div>
               <!-- likes count -->
               <div class="row">
-              <div class="col lg2"></div>
+              <div class="col l2"></div>
                 <div><%= post.likes.count if post.likes.count > 0  %> </div> 
               </div>
          
           </div>
         </div>
         <!--show comments -->
-        <div class="col l12 " id=Com<%= post.id %>> 
+        <div class="col l12 m12 s12" id=Com<%= post.id %>> 
         
           <% post.comments.each do |comment| %>
             <div class="collection">
                   <div class="row collection-item">
-                    <div class="col l1"></div>  
-                    <div class="commenter l8"><%= comment.user.name %> :</div>
+                    <div class="col l1 "></div>  
+                    <div class="commenter l8 m8"><%= comment.user.name %> :</div>
                       <div class="row">
                        
                         
-                        <div class="col l1"></div>
-                          <div class="col l3 row">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= comment.content %></div>
+                        <div class="col l1 m1"></div>
+                        <div class="col l3 m6 row">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= comment.content %></div>
 
                             <% if current_user %>
-                              <div class="col l1">
+                              <div class="col l2">
                               <!-- likes for comments -->
                               <%= form_with(model: @like, local: true) do |f| %>
                                 <%= f.hidden_field :comment_id, value: comment.id %>
                                 
-                                <div class="col lg1"> 
+                                <div class="col l1"> 
                 
                                   <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
                                     <i class="material-icons right ">thumb_up</i>
@@ -120,7 +120,7 @@
                               <% end %> 
                             <% end %> 
                             <!-- comments likes count-->
-                            <div class="col l1">
+                            <div class="col l1 count">
                                 <div><%= comment.likes.count if comment.likes.count > 0 %> </div>
                             </div>
                           </div>

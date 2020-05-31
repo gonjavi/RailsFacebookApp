@@ -16,9 +16,14 @@
       </div>
     </nav>
 
-    <ul class="sidenav" id="mobile-demo">
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <li><a href="collapsible.html">Javascript</a></li>
-      <li><a href="mobile.html">Mobile</a></li>
-    </ul>
+  <ul class="sidenav" id="mobile-demo">
+    <% if current_user %>
+      <li><%= link_to current_user.name, users_show_path(current_user) %></li>
+      <li><%= link_to 'Friendships', users_path %></li>
+      <li> <%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>
+      <li><%= link_to 'Log in', new_user_session_path %></li>
+      <li><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></li>
+    <% end %>
+  </ul>
