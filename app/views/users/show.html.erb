@@ -60,7 +60,7 @@
             <span class="card-title activator grey-text text-darken-4">
          
             <div class="name"><%= post.user.name %></div>
-            <div class="pad-block pad-left"> <%= post.content %></div>
+            <div class="pad-block pad-left "> <%= post.content %> <%= image_tag (post.image), style:'width: 100%' if post.image.attached?  %> </div>
               <div class="row  pad-block">
               <%= form_with(model: @like, local: true) do |f| %>
               <%= f.hidden_field :post_id, value: post.id %>
