@@ -8,7 +8,7 @@
   
     
     <% if current_user == @user %>
-    <div class="col s12 m8 l8 offset-m2 offset-l2">
+    <div class="col s12 m10 l8 xl6 offset-m1 offset-l2 offset-xl3">
       <h2><%= current_user.name.upcase %>'s Posts</h2>
       <div class="card">
         <div class="pad-block pad-left col l8">
@@ -47,7 +47,7 @@
   <div>
     <div class="row">
     
-    <div class="col s9 m8 offset-m2 l8 offset-l2"> 
+    <div class="col s12 m10 l8 xl6 offset-m1 offset-l2 offset-xl3"> 
     <!-- show post -->
     
     <% @posts.each do |post| %>

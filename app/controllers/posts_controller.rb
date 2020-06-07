@@ -27,8 +27,8 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
       else
-        format.html { render 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html { redirect_to posts_path, notice: 'Content missing. Please type the content.' }
+        format.json { render json: @post.errors, status: :unprocessable_entity  }
       end
     end
   end
