@@ -31,7 +31,9 @@
                  </div>
                 </div>
                 <div class="card-action teal lighten-5">
-                  
+                  <%= f.label :image %>
+                  <%= f.file_field :image %>
+
                   <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
                     Add <i class="material-icons right ">add</i>
                    <% end %>
@@ -71,7 +73,10 @@
                 
                 </div>
               <% end %>  
-                
+
+              <!-- likes count -->
+              <div class="col 1"><%= post.likes.count if post.likes.count > 0  %> </div> 
+
                 <div class="col l3" id="<%= post.id %>" > 
                  <a href="#"> Comments </a>
                 
@@ -82,11 +87,7 @@
                   <div class="col l2"><%= link_to "Delete", post_path(post.id), :method => :delete %></div>
                 <% end %>
               </div>
-              <!-- likes count -->
-              <div class="row">
-              <div class="col l2"></div>
-                <div><%= post.likes.count if post.likes.count > 0  %> </div> 
-              </div>
+             
          
           </div>
         </div>
@@ -101,8 +102,8 @@
                       <div class="row">
                        
                         
-                        <div class="col l1 m1"></div>
-                        <div class="col l3 m6 row">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= comment.content %></div>
+                        
+                        <div class="col l12  row">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= comment.content %></div>
 
                             <% if current_user %>
                               <div class="col l2">
@@ -110,7 +111,7 @@
                               <%= form_with(model: @like, local: true) do |f| %>
                                 <%= f.hidden_field :comment_id, value: comment.id %>
                                 
-                                <div class="col l1"> 
+                                <div class="col mano"> 
                 
                                   <%= button_tag(type: 'submit', class: "btn submit light-blue lighten-1") do %>
                                     <i class="material-icons right ">thumb_up</i>
@@ -119,16 +120,16 @@
                                 </div>
                               <% end %> 
                             <% end %> 
-                            <!-- comments likes count-->
-                            <div class="col l1 count">
-                                <div><%= comment.likes.count if comment.likes.count > 0 %> </div>
                             </div>
-                          </div>
+                            <!-- comments likes count-->
+                              <div class="col m1 l1 xl1 cuenta"><%= comment.likes.count if comment.likes.count > 0 %> </div>
+                            
+                          
                             <!-- end likes comments-->
 
                         <% if current_user == comment.user %>
-                          <div class="col l1"><%= link_to 'Edit', edit_comment_path(comment) %></div>
-                          <div class="col l1"><%= link_to "Delete", comment_path(comment.id), :method => :delete %></div>
+                          <div class="col l1 m1 xl1"><%= link_to 'Edit', edit_comment_path(comment) %></div>
+                          <div class="col l1 m1 xl1"><%= link_to "Delete", comment_path(comment.id), :method => :delete %></div>
                         <% end %>
                       </div>
               </div>

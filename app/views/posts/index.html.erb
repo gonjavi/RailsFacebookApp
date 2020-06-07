@@ -90,16 +90,14 @@
           <% post.comments.each do |comment| %>
             <div class="collection">
                   <div class="row collection-item">
-                    <div class="col l1"></div>  
+                    <div class="col m1 l1 xl1"></div>  
                     <div class="commenter l8"><%= comment.user.name %> :</div>
                       <div class="row">
                        
-                        
-                       
-                          <div class="col l12 l1 row">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= comment.content %></div>
+                          <div class="col l12 xl12 m12  row">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= comment.content %></div>
 
                             <% if current_user %>
-                              <div class="col l2">
+                              <div class="col l2 m2 xl2">
                               <!-- likes for comments -->
                               <%= form_with(model: @like, local: true) do |f| %>
                                 <%= f.hidden_field :comment_id, value: comment.id %>
@@ -117,13 +115,13 @@
                           </div>
                           <!-- comments likes count-->
                           
-                              <div class="col 1 cuenta"><%= comment.likes.count if comment.likes.count > 0 %> </div>
+                              <div class="col m1  cuenta"><%= comment.likes.count if comment.likes.count > 0 %> </div>
                          
                             <!-- end likes comments-->
 
                         <% if current_user == comment.user %>
-                          <div class="col l1"><%= link_to 'Edit', edit_comment_path(comment) %></div>
-                          <div class="col l1"><%= link_to "Delete", comment_path(comment.id), :method => :delete %></div>
+                          <div class="col l1 m1 xl1"><%= link_to 'Edit', edit_comment_path(comment) %></div>
+                          <div class="col l1 m1 xl1"><%= link_to "Delete", comment_path(comment.id), :method => :delete %></div>
                         <% end %>
                       </div>
               </div>
