@@ -97,7 +97,7 @@
                           <div class="col l12 xl12 m12  row">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%= comment.content %></div>
 
                             <% if current_user %>
-                              <div class="col l2 m2 xl2">
+                              <div class="col m2 l3 xl3">
                               <!-- likes for comments -->
                               <%= form_with(model: @like, local: true) do |f| %>
                                 <%= f.hidden_field :comment_id, value: comment.id %>
@@ -115,7 +115,7 @@
                           </div>
                           <!-- comments likes count-->
                           
-                              <div class="col m1  cuenta"><%= comment.likes.count if comment.likes.count > 0 %> </div>
+                              <div class="col m1 l1 text-center"><%= comment.likes.count if comment.likes.count > 0 %> </div>
                          
                             <!-- end likes comments-->
 
