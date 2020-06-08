@@ -27,8 +27,8 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
       else
-        format.html { render 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html { redirect_to posts_path, notice: 'Content missing. Please type the content.' }
+        format.json { render json: @post.errors, status: :unprocessable_entity  }
       end
     end
   end
@@ -69,7 +69,9 @@ class PostsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
     params.require(:post).permit(:content,
-                                 :comments_attributes, %i[id content user_id])
+                                 :image,
+                                 :comments_attributes,
+                                  %i[id content image user_id])
   end
 
   def comment_params

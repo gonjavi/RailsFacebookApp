@@ -1,9 +1,12 @@
   <nav>
       <div class="nav-wrapper">
         <a href="/index" class="brand-logo"> &nbsp; BookFace</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="" data-target="mobile-demo" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
         <ul class="right hide-on-med-and-down">
-          <% if current_user %>
+          <% if current_user %>  
+            <li><%= link_to 'Home', posts_path %></li>        
             <li><%= link_to current_user.name, users_show_path(current_user) %></li>
             <li><%= link_to 'Friendships', users_path %></li>
             <li> <%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
@@ -18,6 +21,7 @@
 
   <ul class="sidenav" id="mobile-demo">
     <% if current_user %>
+      <li><%= link_to 'Home', posts_path %></li>
       <li><%= link_to current_user.name, users_show_path(current_user) %></li>
       <li><%= link_to 'Friendships', users_path %></li>
       <li> <%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
